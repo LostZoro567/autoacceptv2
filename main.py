@@ -9,22 +9,26 @@ from handlers.admin import register_admin_handlers
 
 app = Client("bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-async def main():
-    # register handlers
+async def run_bot():
+    # Register handlers
     register_join_handler(app)
     register_start_handler(app)
     register_admin_handlers(app)
 
-    # start aiohttp web server
-    await start_web_server()
-
-    # start bot
+    # Start bot
     await app.start()
     me = await app.get_me()
-    logger.info(f"Bot started as @{me.username}")
+    logger.info(f"✅ Bot started as @{me.username}")
 
-    # ✅ Keep running and listen for updates
+    # Keep alive
     await idle()
+
+async def main():
+    # Run bot + web server concurrently
+    await asyncio.gather(
+        run_bot(),
+        start_web_server()
+    )
 
 if __name__ == "__main__":
     asyncio.run(main())
