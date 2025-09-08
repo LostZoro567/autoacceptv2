@@ -1,29 +1,55 @@
-# config.py
 import os
 import logging
-from dotenv import load_dotenv
 
-load_dotenv()
+# -----------------------
+# Telegram API / Bot
+# -----------------------
+API_ID = int(os.getenv("API_ID", "123456"))  # replace with your default/test ID if needed
+API_HASH = os.getenv("API_HASH", "your_api_hash")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "your_bot_token")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "YourBotUsername")
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("bot")
+# -----------------------
+# MongoDB
+# -----------------------
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
+MONGO_DBNAME = os.getenv("MONGO_DBNAME", "telegram_bot")
 
-API_ID = int(os.getenv("API_ID", "0"))
-API_HASH = os.getenv("API_HASH", "")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-MONGO_URI = os.getenv("MONGO_URI", "")
-OWNER_ID = int(os.getenv("OWNER_ID", "0"))
-BOT_USERNAME = os.getenv("BOT_USERNAME", "")
-PORT = int(os.getenv("PORT", os.getenv("RENDER_PORT", 8000)))
+# -----------------------
+# Admins
+# -----------------------
+# comma-separated list of Telegram user IDs
+ADMINS_ENV = os.getenv("ADMINS", "")
+ADMINS = list(map(int, filter(None, ADMINS_ENV.split(","))))
 
-WELCOME_IMAGE = os.getenv("WELCOME_IMAGE", "")
-START_IMAGE = os.getenv("START_IMAGE", "")
+# -----------------------
+# Webserver / Render
+# -----------------------
+PORT = int(os.getenv("PORT", 10000))  # default Render port
 
-# Inline button configs
-BUTTON1_TEXT = os.getenv("BUTTON1_TEXT", "🌐 Visit Website")
-BUTTON1_URL = os.getenv("BUTTON1_URL", "https://example.com")
-BUTTON2_TEXT = os.getenv("BUTTON2_TEXT", "📢 Join Channel")
-BUTTON2_URL = os.getenv("BUTTON2_URL", "https://t.me/examplechannel")
+# -----------------------
+# Start / Welcome images & buttons
+# -----------------------
+START_IMAGE = os.getenv(
+    "START_IMAGE",
+    "https://graph.org/file/a632ff5bfea88c2e3bc4e-fc860032d437a5d866.jpg"
+)
+WELCOME_IMAGE = os.getenv(
+    "WELCOME_IMAGE",
+    "https://graph.org/file/5c159e3cb5694e24aefe2-34301124b07248c91f.jpg"
+)
 
-if not all([API_ID, API_HASH, BOT_TOKEN, MONGO_URI, OWNER_ID]):
-    raise RuntimeError("Missing required environment variables")
+# Inline button texts and URLs (set in environment for easy changes)
+BUTTON1_TEXT = os.getenv("BUTTON1_TEXT", "📢 Updates Channel")
+BUTTON1_URL = os.getenv("BUTTON1_URL", "https://t.me/YourChannel")
+BUTTON2_TEXT = os.getenv("BUTTON2_TEXT", "💬 Community Group")
+BUTTON2_URL = os.getenv("BUTTON2_URL", "https://t.me/YourGroup")
+
+# -----------------------
+# Logging setup
+# -----------------------
+logging.basicConfig(
+    format='[%(asctime)s] %(levelname)s - %(message)s',
+    level=logging.INFO
+)
+logger = logging.getLogger(__name__)
