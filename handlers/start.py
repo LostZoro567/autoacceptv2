@@ -12,14 +12,17 @@ from database import save_user, mark_blocked
 def register_start_handler(app):
     @app.on_message(filters.private & filters.command("start"))
     async def start(client, message):
+        logger.info(f"/start received from {message.from_user.id}")  # ✅ Debug
+
         user = message.from_user
         payload = message.command[1] if len(message.command) > 1 else "start"
 
-        # Always save user (direct /start or via button link)
+        # Always save user
         try:
             await save_user(user.id, user.username, user.first_name, started_via=payload)
+            logger.info(f"Saved user {user.id} to database")
         except Exception as e:
-            logger.error(f"DB save error: {e}")
+            logger.error(f"DB save error for {user.id}: {e}")
 
         # Custom welcome text
         text = (
@@ -27,7 +30,6 @@ def register_start_handler(app):
             "Welcome to our bot. Here are some useful links:"
         )
 
-        # Inline buttons from env
         buttons = InlineKeyboardMarkup([
             [InlineKeyboardButton(BUTTON1_TEXT, url=BUTTON1_URL)],
             [InlineKeyboardButton(BUTTON2_TEXT, url=BUTTON2_URL)],
@@ -36,7 +38,10 @@ def register_start_handler(app):
         try:
             if START_IMAGE:
                 await client.send_photo(user.id, START_IMAGE, caption=text, reply_markup=buttons)
+                logger.info(f"Sent start image to {user.id}")
             else:
                 await client.send_message(user.id, text, reply_markup=buttons)
-        except:
+                logger.info(f"Sent start text to {user.id}")
+        except Exception as e:
+            logger.error(f"Failed to send start message to {user.id}: {e}")
             await mark_blocked(user.id)
