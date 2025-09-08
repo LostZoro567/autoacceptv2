@@ -1,43 +1,22 @@
-# database.py
-import os
-from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime, timezone, date
-from config import MONGO_URI, logger
 
-client = AsyncIOMotorClient(MONGO_URI)
-
-# If you provided MONGO_DBNAME use it; else try default database from URI; else fallback
-DBNAME = os.getenv("MONGO_DBNAME")
-if DBNAME:
-    db = client[DBNAME]
-else:
+async def stats():
     try:
-        db = client.get_default_database()  # works if URI contains /dbname
-    except Exception:
-        # fallback name
-        db = client["telegram_bot"]
-
-users_col = db.users
-
-async def save_user(user_id, username=None, first_name=None, started_via="start"):
-    now = datetime.now(timezone.utc)
-    doc = {
-        "user_id": user_id,
-        "username": username,
-        "first_name": first_name,
-        "created_at": now,
-        "last_seen": now,
-        "active": True,
-        "blocked": False,
-        "via": started_via
-    }
-    try:
-        await users_col.update_one({"user_id": user_id}, {"$set": doc, "$setOnInsert": {"created_at": now}}, upsert=True)
+        total = await users_col.count_documents({})
+        today = date.today()
+        today_count = await users_col.count_documents({
+            "created_at": {"$gte": datetime(today.year, today.month, today.day, tzinfo=timezone.utc)}
+        })
+        blocked = await users_col.count_documents({"blocked": True})
+        return {"total": total, "today": today_count, "blocked": blocked}
     except Exception as e:
-        logger.error(f"DB save_user error: {e}")
+        logger.error(f"DB stats error: {e}")
+        return {"total": 0, "today": 0, "blocked": 0}
 
-async def mark_blocked(user_id):
+async def cleanup_blocked():
     try:
-        await users_col.update_one({"user_id": user_id}, {"$set": {"active": False, "blocked": True}})
+        result = await users_col.delete_many({"blocked": True})
+        return result.deleted_count
     except Exception as e:
-        logger.error(f"DB mark_blocked error: {e}")
+        logger.error(f"DB cleanup error: {e}")
+        return 0
