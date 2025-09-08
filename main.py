@@ -1,6 +1,6 @@
 # main.py
 import asyncio
-from pyrogram import Client
+from pyrogram import Client, idle
 from config import API_ID, API_HASH, BOT_TOKEN, logger
 from webserver import start_web_server
 from handlers.join_request import register_join_handler
@@ -22,7 +22,9 @@ async def main():
     await app.start()
     me = await app.get_me()
     logger.info(f"Bot started as @{me.username}")
-    await asyncio.Event().wait()
+
+    # ✅ Keep running and listen for updates
+    await idle()
 
 if __name__ == "__main__":
     asyncio.run(main())
