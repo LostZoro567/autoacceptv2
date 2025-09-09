@@ -44,7 +44,7 @@ JOIN_IMAGE = os.getenv("JOIN_IMAGE", "https://example.com/join_image.jpg")
 START_IMAGE = os.getenv("START_IMAGE", "https://example.com/start_image.jpg")
 START_TEXT = os.getenv(
     "START_TEXT",
-    "👋 Welcome! Thanks for starting the bot."
+    "👋 Welcome! Exclusive channels + free videos, join our 👇🏻 ."
 )
 
 # Inline button 1
