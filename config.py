@@ -44,7 +44,7 @@ JOIN_IMAGE = os.getenv("JOIN_IMAGE", "https://example.com/join_image.jpg")
 START_IMAGE = os.getenv("START_IMAGE", "https://example.com/start_image.jpg")
 START_TEXT = os.getenv(
     "START_TEXT",
-    "👋 Welcome! Exclusive channels + free videos, join our 👇🏻 ."
+    "🔞 𝘽𝙝𝙖𝙗𝙝𝙞 𝙇𝙤𝙫𝙚𝙧𝙨 😈😈\n https://t.me/+_eHCTEMA7zpjZTJl \n\n 🤒 𝘼𝙨𝙞𝙖𝙣 𝙊𝙣𝙡𝙮𝙛𝙖𝙣𝙨 🍑🍑 \n https://t.me/+n99vYeGDKoBmYTg1 \n\n 𝐅𝐮𝐥𝐥 𝐋𝐞𝐧𝐠𝐭𝐡 𝐇𝐞𝐧𝐭𝐚𝐢 💦 \n https://t.me/+9WOgYXXXJIE0ODY1 \n\n 🥵 𝐀𝐈 / 𝐃𝐫𝐞𝐬𝐬 𝐑𝐞𝐦𝐨𝐯𝐞𝐫 ☠️☠️ \n https://t.me/+eAtctmllKshmNTI1 \n\n 📹 𝗢𝗻𝗹𝗶𝗻𝗲 𝗖𝗮𝗺 𝗚𝗶𝗿𝗹 💦💦 \n https://t.me/+5VsHBPsaIl4xYTU1 \n\n 👅 𝐁𝐫𝐚𝐳𝐳𝐞𝐫𝐬 𝟒𝐤 𝐅𝐮𝐥𝐥 😻🫶🏻 \n https://t.me/+rzB9xKDJt4pmNDBl \n\n Promotion :- @fps244hz"
 )
 
 # Inline button 1
