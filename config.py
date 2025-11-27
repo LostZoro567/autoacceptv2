@@ -44,7 +44,7 @@ JOIN_IMAGE = os.getenv("JOIN_IMAGE", "https://example.com/join_image.jpg")
 START_IMAGE = os.getenv("START_IMAGE", "https://example.com/start_image.jpg")
 START_TEXT = os.getenv(
     "START_TEXT",
-    "👅 Wιϝҽ Sɯαρριɳɠ 💦\n https://t.me/+Bvdx4nbMWXA0NjZl \n\n 💋 𝙰𝚜𝚒𝚊𝚗 𝙱𝚊𝚍𝚍𝚒𝚎 😍🦋\n https://t.me/+5ZCgwtfS_6E0MWU9 \n\n 😈 𝙏𝙚𝙖𝙘𝙝𝙚𝙧 & 𝙎𝙩𝙪𝙙𝙚𝙣𝙩 👩🏻‍🦰💋 \n https://t.me/+cEY8QIEfca40ZDI1"
+    "😈 𝐁𝐡𝐚-𝐛𝐡𝐢 𝐅𝐮𝐧 👅💦\n https://t.me/+MxvSVdVlmj45Mjdl \n\n 🥵 𝐀𝐬𝐢𝐚𝐧 𝐁𝐚𝐝𝐝𝐢𝐞𝐬 💋🔥\n https://t.me/+vxsMApC73wc3Mzdl \n\n 🌸 𝙰𝚗𝚒𝚖𝚎 𝙲𝚘𝚕𝚕𝚎𝚌𝚝𝚒𝚘𝚗 👱🏻‍♀️✌🏻 \n https://t.me/+inbJWn3S4_tkNGE1"
 )
 
 # Inline button 1
